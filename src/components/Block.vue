@@ -27,6 +27,7 @@ export default {
     methods : {
         stopTimer () {
             clearInterval(this.timer);
+            this.$emit('endGame',this.score);
         },
         startTimer() {
             this.timer=setInterval(()=> {

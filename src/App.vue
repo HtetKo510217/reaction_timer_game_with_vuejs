@@ -1,9 +1,9 @@
 <template>
   <div>
     <p>Reaction timer Game</p>
-    <button @click="start" class="playBtn">Play</button>
+    <button @click="start" class="playBtn" :disabled="isPlaying">Play</button>
     <div v-if="isPlaying">
-      <Block />
+      <Block :delay = "delay" />
     </div>
   </div>
 </template>
@@ -18,15 +18,13 @@ export default {
   data() {
     return {
       isPlaying : false,
-      timer:null,
+      delay:null,
     }
   },
   methods: {
     start() {
-      this.timer = 1000+ Math.random() * 4000;
-      setTimeout(()=> {
-        this.isPlaying = true;
-      },this.timer)
+      this.isPlaying = true;
+      this.delay = 1000+ Math.random() * 4000;
     }
   }
 }
@@ -44,12 +42,17 @@ export default {
 .playBtn {
   cursor: pointer;
   width: 80px;
-  background: darkgray;
+  background: gray;
   border: none;
   padding: 10px;
   border-radius: 10px;
-  color: darkred;
+  color: #000;
   font-weight: bold;
   font-size: 16px;
+}
+.playBtn:disabled {
+  cursor:auto;
+  background: darkred;
+  color: #fff;
 }
 </style>
